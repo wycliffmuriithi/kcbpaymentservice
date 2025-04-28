@@ -1,0 +1,13 @@
+version: '3'
+services:
+  payment-service:
+    image: paymentservice
+    build: .
+    ports:
+      - "9000:9000"
+    environment:
+      - DB_URL=jdbc:h2:mem:testdb
+      - DB_USERNAME=sa
+      - DB_PASSWORD=password
+      - USER_NAME=user
+      - USER_PASSWORD=password
