@@ -9,21 +9,21 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 @Component("airtelmoney")
 public class AirtelMoneyPlatform implements PaymentPlatform {
-    SMSService smsService;
+    private final SMSService smsService;
 
     public AirtelMoneyPlatform(SMSService smsService) {
         this.smsService = smsService;
     }
 
     @Override
-    public PaymentResponse initPayment(PaymentReq paymentReq){
+    public PaymentResponse initPayment(PaymentReq paymentReq) {
+        //TODO save payment details to db
         return PaymentResponse.builder().mnoPaymentId(UUID.randomUUID().toString()).description("Payment Successfully Initiated").statusCode("200").build();
     }
 
     @Override
     public PaymentResponse getPaymentStatus(PaymentResponse paymentResponse) {
-
-        //TODO retrieve paymentDetails {}from db to
+        //TODO retrieve paymentDetails {} from db to update status and get msisdn
         smsService.sendSms("msisdn", "Payment successful");
         return PaymentResponse.builder().mnoPaymentId(UUID.randomUUID().toString()).description("Payment Successfully Initiated").statusCode("200").build();
     }

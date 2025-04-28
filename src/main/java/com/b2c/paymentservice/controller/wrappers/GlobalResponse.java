@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class GlobalResponse {
-    String status;
-    String message;
-    Object data;
+    private String status;
+    private String message;
+    private Object data;
 }

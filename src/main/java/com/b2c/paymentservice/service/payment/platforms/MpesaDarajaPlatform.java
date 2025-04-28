@@ -11,18 +11,18 @@ import java.util.UUID;
 @Component("mpesa")
 public class MpesaDarajaPlatform implements PaymentPlatform {
 
-    private SMSService smsService;
+    private final SMSService smsService;
 
     public MpesaDarajaPlatform(SMSService smsService) {
         this.smsService = smsService;
     }
 
-    @Override
+    @Override //TODO save payment details to db
     public PaymentResponse initPayment(PaymentReq paymentReq) {
         return PaymentResponse.builder().mnoPaymentId(UUID.randomUUID().toString()).description("Payment Successfully Initiated").statusCode("200").build();
     }
 
-    @Override
+    @Override //TODO retrieve paymentDetails {} from db to update status and get msisdn
     public PaymentResponse getPaymentStatus(PaymentResponse paymentResponse) {
         int randomNumber = (int) (Math.random() * 100);
         if (randomNumber % 2 == 0) {
